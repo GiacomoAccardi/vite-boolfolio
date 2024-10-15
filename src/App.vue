@@ -1,7 +1,11 @@
 <script>
+import ProjectCard from './components/ProjectCard.vue';
 import axios from 'axios';
 
 export default {
+  components: {
+      ProjectCard,
+    },
   data(){
     return {
       projects: []
@@ -29,15 +33,7 @@ export default {
       <div class="col-12">
 
         <div class="row gy-4">
-          <div class="col-12 col-md-5 col-lg-4" v-for="proj in projects" :key="proj.id">
-            <div class="card">
-              <img :src="proj.image != null ? `http://127.0.0.1:8000/storage/${proj.image}` : 'https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg'" alt="" class="card-img-top">
-              <div class="card-body">
-                <h4 class="card-title">{{proj.name}}</h4>
-                <p>{{proj.summary}}</p>
-              </div>
-            </div>
-          </div>
+          <ProjectCard v-for="proj in projects" :key="proj.id" :project="proj"/>
         </div>
 
       </div>
